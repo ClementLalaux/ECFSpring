@@ -35,8 +35,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public int getUserId() {
-        return (int)httpSession.getAttribute("userId");
+    public Integer getUserId() {
+        return (Integer) httpSession.getAttribute("joueur");
     }
 
 

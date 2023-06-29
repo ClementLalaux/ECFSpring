@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.exception.NotSignInException;
 import com.example.demo.exception.UserExistException;
 import com.example.demo.exception.UserNotExistException;
+import com.example.demo.service.ClassementService;
 import com.example.demo.service.JoueurService;
 import com.example.demo.service.LoginService;
+import com.example.demo.service.PartieService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +28,15 @@ public class JoueurController {
     @Autowired
     private HttpSession session;
 
+    @Autowired
+    private PartieService partieService;
+
+    @Autowired
+    private LoginService loginService;
+
+    @Autowired
+    private ClassementService classementService;
+
     @GetMapping("connexion")
     public ModelAndView connexion(){
         ModelAndView modelAndView = new ModelAndView("connexion");
@@ -34,7 +46,7 @@ public class JoueurController {
     @PostMapping("connexion")
     public String connexion(@RequestParam String mail,@RequestParam String mdp) throws UserNotExistException {
         if(joueurService.connexion(mail,mdp)){
-            return "redirect:/";
+            return "redirect:/joueur/profil";
         }
         return null;
     }
@@ -53,10 +65,12 @@ public class JoueurController {
     }
 
     @GetMapping("profil")
-    public ModelAndView profil() throws UserNotExistException {
+    public ModelAndView profil() throws UserNotExistException, NotSignInException {
         ModelAndView modelAndView = new ModelAndView("profil");
-        if(joueurService.findJoueurById((Integer) session.getAttribute("joueur")).isPresent()){
+        if(joueurService.findJoueurById((Integer) session.getAttribute("joueur")) != null){
             modelAndView.addObject("joueur",joueurService.findJoueurById((Integer) session.getAttribute("joueur")));
+            modelAndView.addObject("parties",partieService.getPartiesByIdJoueur(joueurService.findJoueurById(loginService.getUserId())));
+            modelAndView.addObject("classement",classementService.getClassementById(loginService.getUserId()));
         }
         return modelAndView;
     }

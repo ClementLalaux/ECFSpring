@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface PartieRepository extends CrudRepository<Partie,Integer> {
 
-//    public List<Partie> findByJoueur1OrJoueur2(Joueur idJoueur1 , Joueur idJoueur2);
+      public List<Partie> findByJoueur1OrJoueur2(Joueur idJoueur1 , Joueur idJoueur2);
 
 //    @Query("SELECT p FROM Partie p WHERE p.date < CURRENT_TIMESTAMP ORDER BY p.date DESC LIMIT 5")
 //    List<Partie> findByDateHeureBeforeNowOrderByDateDesc();

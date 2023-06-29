@@ -72,6 +72,13 @@ public class PartieService {
         throw new NotSignInException();
     }
 
+    public List<Partie> getPartiesByIdJoueur(Joueur joueur) throws NotSignInException {
+        if(loginService.isLogged()){
+            return partieRepository.findByJoueur1OrJoueur2(joueur,joueur);
+        }
+        throw new NotSignInException();
+    }
+
 //    public List<Partie> getPartiesByUser(Integer id) throws NotSignInException {
 //        if(loginService.isLogged()){
 //            return (List<Partie>) partieRepository.findByJoueur1OrJoueur2();

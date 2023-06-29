@@ -7,6 +7,6 @@ public interface LoginService {
     public boolean login(Joueur joueur);
     public boolean isLogged();
     public boolean isAdmin();
-    public int getUserId();
+    public Integer getUserId();
 
 }

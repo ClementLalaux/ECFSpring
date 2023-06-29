@@ -10,6 +10,7 @@ import com.example.demo.repository.JoueurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,13 +47,17 @@ public class JoueurService {
         }
     }
 
-    public Optional<Joueur> findJoueurById(Integer id) throws UserNotExistException {
+    public Joueur findJoueurById(Integer id) throws UserNotExistException {
         try {
-            Optional<Joueur> joueur = joueurRepository.findById(id);
+            Joueur joueur = joueurRepository.findById(id).get();
             return joueur;
         } catch (Exception e){
             throw new UserNotExistException();
         }
+    }
+
+    public List<Joueur> findAllJoueurs(){
+        return (List<Joueur>) joueurRepository.findAll();
     }
 
 }

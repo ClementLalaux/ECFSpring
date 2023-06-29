@@ -19,14 +19,18 @@
       <th>Date</th>
       <th>Joueur 1</th>
       <th>Joueur 2</th>
+      <th>Statut</th>
+      <th>Résultat</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="partie : ${parties}" >
       <td th:text="${partie.id}"></td>
       <td th:text="${#dates.format(partie.date,'dd-MMM-yyyy')}"></td>
-      <td th:text="${annonce.joueur1.prenom}"></td>
-      <td th:text="${annonce.joueur2.prenom}"></td>
+      <td th:text="${partie.joueur1.prenom}+' '+${partie.joueur1.nom}"></td>
+      <td th:text="${partie.joueur2.prenom}+' '+${partie.joueur2.nom}"></td>
+      <td th:text="${partie.statut == 1 ? 'Déjà joué' : 'Pas encore joué'}"></td>
+      <td th:text="${partie.statut == 1 ? 'Joueur 1 à gagné' : (partie.statut == 2 ? 'Match nul' : (partie.statut == 3 ? 'Joueur 2 à gagné' : 'Pas de résultat'))}"></td>
     </tr>
     </tbody>
   </table>
