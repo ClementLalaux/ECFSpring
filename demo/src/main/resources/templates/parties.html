@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion</title>
+  <th:block th:insert="~{fragments/base.html :: head}"/>
+</head>
+<body>
+<header th:replace="fragments/base.html :: header"></header>
+
+
+<div class="container">
+  <a  th:href="@{/partie/add}" class="btn btn-primary my-4">Ajouter une partie</a>
+
+  <table class="table table-bordered table-striped table-dark text-center">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Joueur 1</th>
+      <th>Joueur 2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="partie : ${parties}" >
+      <td th:text="${partie.id}"></td>
+      <td th:text="${#dates.format(partie.date,'dd-MMM-yyyy')}"></td>
+      <td th:text="${annonce.joueur1.prenom}"></td>
+      <td th:text="${annonce.joueur2.prenom}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

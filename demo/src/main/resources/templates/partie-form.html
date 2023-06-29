@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Inscription</title>
+  <th:block th:include="fragments/base.html :: head"/>
+</head>
+<body>
+<header th:replace="fragments/base.html :: header"></header>
+<form th:action="@{#}"  method="post"  th:object="${parties}">
+  <div class="row m-1">
+    <input type="date" name="date" />
+  </div>
+  <div class="row m-1">
+    <input type="number" name="joueur1" placeholder="joueur 1"  />
+  </div>
+  <div class="row m-1">
+    <input type="number" name="joueur2" placeholder="joueur 2" />
+  </div>
+  <div class="row m-1">
+    <input type="number" name="tournoi" placeholder="tournoi" />
+  </div>
+
+  <div>
+    <button>Valider</button>
+  </div>
+</form>
+</body>
+</html>

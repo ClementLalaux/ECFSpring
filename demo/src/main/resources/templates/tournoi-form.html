@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Inscription</title>
+  <th:block th:include="fragments/base.html :: head"/>
+</head>
+<body>
+<header th:replace="fragments/base.html :: header"></header>
+<form th:action="@{/tournoi/add}"  method="post">
+  <div class="row m-1">
+    <input type="text" name="nom" placeholder="Nom du tournoi "/>
+  </div>
+  <div class="row m-1">
+    <input type="text" name="statut" placeholder="Statut du tournoi"  />
+  </div>
+
+  <div>
+    <button>Valider</button>
+  </div>
+</form>
+</body>
+</html>
